@@ -45,4 +45,12 @@ const exerciseSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
+exerciseSchema.virtual('totalWeight').get(function () {
+  const totalWeight = this.weights.reduce((sum, weight) => {
+    return sum + weight.weight.value * weight.number
+  }, 0)
+
+  return { totalWeight }
+})
+
 module.exports = mongoose.model('Exercise', exerciseSchema)

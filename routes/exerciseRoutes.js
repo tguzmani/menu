@@ -12,6 +12,9 @@ const {
   readExercises,
   updateExercise,
   deleteExercise,
+  getTotalWeight,
+  createWeight,
+  deleteWeight,
 } = require('../controllers/exercisecontroller.js')
 
 router.post('/:routineId', middleware, createExercise)
@@ -19,5 +22,11 @@ router.get('/all', middleware, readExercises)
 router.get('/:exerciseId', middleware, readExercise)
 router.put('/:exerciseId', middleware, updateExercise)
 router.delete('/:exerciseId', middleware, deleteExercise)
+
+router.get('/:exerciseId/totalWeight', middleware, getTotalWeight)
+
+router.post('/:exerciseId/:weightId', middleware, createWeight)
+router.put('/:exerciseId/:weightId', middleware, () => {})
+router.delete('/:exerciseId/:weightId', middleware, deleteWeight)
 
 module.exports = router

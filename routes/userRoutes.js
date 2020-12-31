@@ -4,7 +4,7 @@ const router = express.Router()
 const { monitor } = require('../middleware/monitor')
 const { auth } = require('../middleware/auth')
 
-const { readUser } = require('../controllers/userControllers')
+const { readUser } = require('../controllers/userController')
 
 router.get('/:userId', auth, readUser)
 

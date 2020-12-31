@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node server",
-    "dev": "nodemon server"
+    "dev": "nodemon server",
+    "new-model": "node ./framework/newModel",
+    "new-controller": "node ./framework/newController",
+    "new-routes": "node ./framework/newRoutes"
   },
   "author": "Tomás Guzmán",
   "license": "ISC",

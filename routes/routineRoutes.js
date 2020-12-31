@@ -1,0 +1,23 @@
+const express = require('express')
+const router = express.Router()
+
+const { monitor } = require('../middleware/monitor')
+const { auth } = require('../middleware/auth')
+
+const middleware = [auth, monitor]
+
+const {
+  createRoutine,
+  readRoutine,
+  readRoutines,
+  updateRoutine,
+  deleteRoutine,
+} = require('../controllers/routinecontroller.js')
+
+router.post('/', middleware, createRoutine)
+router.get('/all', middleware, readRoutines)
+router.get('/:routineId', middleware, readRoutine)
+router.put('/:routineId', middleware, updateRoutine)
+router.delete('/:routineId', middleware, deleteRoutine)
+
+module.exports = router

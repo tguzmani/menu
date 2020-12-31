@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const { monitor } = require('../middleware/monitor')
-const { signup, signin } = require('../controllers/authControllers')
+const { signup, signin } = require('../controllers/authController')
 
 const {
   authSignUpValidator,

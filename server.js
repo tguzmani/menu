@@ -18,11 +18,8 @@ const useRoute = route => {
   app.use(`/api/${route}`, require(`./routes/${route}Routes`))
 }
 
-routes = ['auth']
-
+routes = ['auth', 'routine', 'exercise', 'weight']
 routes.forEach(route => useRoute(route))
-
-// dotenv.config({ path: './config/config.env' })
 
 const PORT = process.env.PORT || 8000
 

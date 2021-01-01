@@ -46,11 +46,30 @@ const exerciseSchema = new mongoose.Schema(
 )
 
 exerciseSchema.virtual('totalWeight').get(function () {
-  const totalWeight = this.weights.reduce((sum, weight) => {
-    return sum + weight.weight.value * weight.number
-  }, 0)
-
-  return { totalWeight }
+  return this.weights.reduce(
+    (sum, weight) => sum + weight.weight.value * weight.number,
+    0
+  )
 })
+
+exerciseSchema.virtual('totalVolume').get(function () {
+  return this.weights.reduce(
+    (sum, weight) =>
+      sum + weight.weight.value * weight.number * this.repetitions * this.sets,
+    0
+  )
+})
+
+exerciseSchema.methods.totalVolumeByReps = function (reps) {
+  return this.weights.reduce(
+    (sum, weight) =>
+      sum +
+      weight.weight.value *
+        weight.number *
+        (this.repetitions + reps) *
+        this.sets,
+    0
+  )
+}
 
 module.exports = mongoose.model('Exercise', exerciseSchema)

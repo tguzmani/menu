@@ -10,6 +10,16 @@ const routineSchema = new mongoose.Schema(
       maxlength: 32,
     },
 
+    history: [
+      {
+        date: Date,
+        volume: {
+          type: Number,
+          default: 0,
+        },
+      },
+    ],
+
     user: {
       type: ObjectId,
       ref: 'User',
@@ -18,5 +28,13 @@ const routineSchema = new mongoose.Schema(
   },
   { timestamps: true }
 )
+
+routineSchema.virtual('totalRoutines').get(function () {
+  return this.history.length
+})
+
+routineSchema.virtual('repsByRoutineNumber').get(function () {
+  return this.history.length % 3
+})
 
 module.exports = mongoose.model('Routine', routineSchema)

@@ -14,6 +14,7 @@ const {
   deleteExercise,
   getTotalWeight,
   createWeight,
+  updateWeight,
   deleteWeight,
 } = require('../controllers/exercisecontroller.js')
 
@@ -26,7 +27,7 @@ router.delete('/:exerciseId', middleware, deleteExercise)
 router.get('/:exerciseId/totalWeight', middleware, getTotalWeight)
 
 router.post('/:exerciseId/:weightId', middleware, createWeight)
-router.put('/:exerciseId/:weightId', middleware, () => {})
+router.put('/:exerciseId/:weightId', middleware, updateWeight)
 router.delete('/:exerciseId/:weightId', middleware, deleteWeight)
 
 module.exports = router

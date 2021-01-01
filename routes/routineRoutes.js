@@ -12,6 +12,8 @@ const {
   readRoutines,
   updateRoutine,
   deleteRoutine,
+  createSession,
+  popSession,
 } = require('../controllers/routinecontroller.js')
 
 router.post('/', middleware, createRoutine)
@@ -19,5 +21,8 @@ router.get('/all', middleware, readRoutines)
 router.get('/:routineId', middleware, readRoutine)
 router.put('/:routineId', middleware, updateRoutine)
 router.delete('/:routineId', middleware, deleteRoutine)
+
+router.put('/:routineId/createSession', middleware, createSession)
+router.put('/:routineId/popSession', middleware, popSession)
 
 module.exports = router

@@ -1,4 +1,7 @@
 const Exercise = require('../models/Exercise')
+const Weight = require('../models/Weight')
+const mongoose = require('mongoose')
+const { ObjectId } = mongoose.Types
 
 exports.createExercise = async (req, res) => {
   const exercise = Exercise({
@@ -21,7 +24,7 @@ exports.readExercises = async (req, res) => {
 
 exports.readExercise = async (req, res) => {
   Exercise.findById(req.params.exerciseId)
-    .populate({ path: 'weights.weight', select: 'name value type' })
+    .populate('weights.weight')
     .then(exercise => {
       if (!exercise)
         return res.status(400).json({ message: 'Exercise not found' })
@@ -71,22 +74,67 @@ exports.createWeight = async (req, res) => {
       if (!exercise)
         return res.status(400).json({ message: 'Exercise not found' })
       else {
-        const element = exercise.weights
+        const weight = exercise.weights
           .filter(weight => weight.weight._id == req.params.weightId)
           .pop()
 
-        if (element)
+        if (weight)
           return res
             .status(400)
             .json({ message: 'Weight already exists in exercise' })
 
-        exercise.weights.push({
-          _id: req.params.weightId,
-          number: req.body.number,
-        })
+        Weight.findById(req.params.weightId)
+          .then(weight => {
+            if (!weight)
+              return res.status(400).json({ message: 'Weight not found' })
 
-        exercise.save()
-        res.send(exercise)
+            if (weight.type === 'barbell' && req.body.number !== 1)
+              return res
+                .status(400)
+                .json({ message: 'Barbell number cannot be different than 1' })
+
+            exercise.weights.push({
+              weight: { _id: req.params.weightId },
+              number: req.body.number,
+            })
+
+            exercise.save()
+            res.send(exercise)
+          })
+          .catch(error => res.status(500).json({ error: error.message }))
+      }
+    })
+    .catch(error => res.status(500).json({ error: error.message }))
+}
+
+exports.updateWeight = async (req, res) => {
+  Exercise.findById(req.params.exerciseId)
+    .populate({ path: 'weights.weight', select: 'name value type' })
+    .select('weights')
+    .then(exercise => {
+      if (!exercise)
+        return res.status(400).json({ message: 'Exercise not found' })
+      else {
+        try {
+          const elementId = exercise.weights
+            .filter(weight => weight.weight._id == req.params.weightId)
+            .pop()._id
+
+          Exercise.findOneAndUpdate(
+            {
+              _id: req.params.exerciseId,
+              'weights._id': elementId,
+            },
+            { $set: { 'weights.$.number': req.body.number } },
+            { new: true }
+          )
+            .then(exercise => res.json(exercise))
+            .catch(error => res.status(500).json({ error: error.message }))
+        } catch (error) {
+          return res
+            .status(400)
+            .json({ message: 'Weight not found in exercise' })
+        }
       }
     })
     .catch(error => res.status(500).json({ error: error.message }))

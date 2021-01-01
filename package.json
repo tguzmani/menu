@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "NODE_ENV=production node server",
     "dev": "nodemon server",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "new-model": "node ./framework/newModel",
     "new-controller": "node ./framework/newController",
     "new-routes": "node ./framework/newRoutes"

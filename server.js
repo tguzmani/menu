@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const path = require('path')
 // const dotenv = require('dotenv')
-require('dotenv').config({ path: './config/config.env' })
+require('dotenv').config()
 
 const app = express()
 connectDB()

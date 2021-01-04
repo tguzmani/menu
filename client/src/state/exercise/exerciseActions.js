@@ -20,7 +20,7 @@ export const setLoading = () => dispatch => {
 export const createExercise = routineId => async dispatch => {
   setLoading()(dispatch)
   try {
-    const res = await axios.post(`api/exercise/${routineId}`, config)
+    const res = await axios.post(`/api/exercise/${routineId}`, config)
     dispatch({ type: CREATE_EXERCISE, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_EXERCISE, payload: error.response.data.message })
@@ -30,7 +30,7 @@ export const createExercise = routineId => async dispatch => {
 export const readExercises = () => async dispatch => {
   setLoading()(dispatch)
   try {
-    const res = await axios.get('api/exercise/all')
+    const res = await axios.get('/api/exercise/all')
     dispatch({ type: READ_EXERCISES, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_EXERCISE, payload: error.response.data.message })
@@ -41,7 +41,7 @@ export const updateExercise = exercise => async dispatch => {
   setLoading()(dispatch)
   try {
     const res = await axios.put(
-      `api/exercise/${exercise._id}`,
+      `/api/exercise/${exercise._id}`,
       exercise,
       config
     )
@@ -54,7 +54,7 @@ export const updateExercise = exercise => async dispatch => {
 export const deleteExercise = exercise => async dispatch => {
   setLoading()(dispatch)
   try {
-    const res = await axios.delete(`api/task/${exercise._id}`)
+    const res = await axios.delete(`/api/task/${exercise._id}`)
     dispatch({ type: DELETE_EXERCISE, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_EXERCISE, payload: error.response.data.message })
@@ -65,7 +65,7 @@ export const addWeightExercise = (weight, exerciseId) => async dispatch => {
   setLoading()(dispatch)
   try {
     const res = await axios.post(
-      `api/exercise/${exerciseId}/${weight._id}`,
+      `/api/exercise/${exerciseId}/${weight._id}`,
       weight,
       config
     )
@@ -84,7 +84,7 @@ export const deleteWeightExercise = (
 ) => async dispatch => {
   // setLoading()(dispatch)
   try {
-    const res = await axios.delete(`api/exercise/${exerciseId}/${weightId}`)
+    const res = await axios.delete(`/api/exercise/${exerciseId}/${weightId}`)
     dispatch({
       type: DELETE_WEIGHT_EXERCISE,
       payload: { data: res.data, exerciseId },

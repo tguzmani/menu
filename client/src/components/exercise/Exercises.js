@@ -8,7 +8,7 @@ const Exercises = ({ exercises }) => {
   return (
     <ListGroup>
       {exercises.map(exercise => (
-        <ExerciseItem exercise={exercise} />
+        <ExerciseItem exercise={exercise} key={exercise._id} />
       ))}
     </ListGroup>
   )

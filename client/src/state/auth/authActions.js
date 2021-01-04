@@ -11,7 +11,7 @@ export const signin = credentials => async dispatch => {
   setLoading()(dispatch)
 
   try {
-    const res = await axios.post('api/auth/signin', credentials, config)
+    const res = await axios.post('/api/auth/signin', credentials, config)
     dispatch({ type: SIGN_IN, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_AUTH, payload: error.response.data.message })

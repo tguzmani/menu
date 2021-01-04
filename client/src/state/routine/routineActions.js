@@ -19,7 +19,7 @@ export const setLoading = () => dispatch => {
 export const createRoutine = routine => async dispatch => {
   setLoading()(dispatch)
   try {
-    const res = await axios.post(`api/routine/`, routine, config)
+    const res = await axios.post(`/api/routine/`, routine, config)
     dispatch({ type: CREATE_ROUTINE, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_ROUTINE, payload: error.response.data.message })
@@ -29,7 +29,7 @@ export const createRoutine = routine => async dispatch => {
 export const readRoutines = () => async dispatch => {
   setLoading()(dispatch)
   try {
-    const res = await axios.get(`api/routine/all`)
+    const res = await axios.get(`/api/routine/all`)
     dispatch({ type: READ_ROUTINES, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_ROUTINE, payload: error.response.data.message })
@@ -39,7 +39,7 @@ export const readRoutines = () => async dispatch => {
 export const updateRoutine = routine => async dispatch => {
   setLoading()(dispatch)
   try {
-    const res = await axios.put(`api/routine/${routine._id}`, routine, config)
+    const res = await axios.put(`/api/routine/${routine._id}`, routine, config)
     dispatch({ type: UPDATE_ROUTINE, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_ROUTINE, payload: error.response.data.message })
@@ -49,7 +49,7 @@ export const updateRoutine = routine => async dispatch => {
 export const deleteRoutine = routine => async dispatch => {
   setLoading()(dispatch)
   try {
-    const res = await axios.delete(`api/task/${routine._id}`)
+    const res = await axios.delete(`/api/task/${routine._id}`)
     dispatch({ type: DELETE_ROUTINE, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_ROUTINE, payload: error.response.data.message })

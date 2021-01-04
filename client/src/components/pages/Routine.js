@@ -30,12 +30,9 @@ const Routine = ({
   }
 
   useEffect(() => {
+    readExercises()
     if (routines.length === 0) readRoutines()
   }, [])
-
-  useEffect(() => {
-    if (exercises.length === 0 && routine) readExercises(routine._id)
-  }, [routine])
 
   if (loadingRoutine || loadingExercise) return <Loading />
 

@@ -14,7 +14,7 @@ const {
   deleteRoutine,
   createSession,
   popSession,
-} = require('../controllers/routinecontroller.js')
+} = require('../controllers/routineController.js')
 
 router.post('/', middleware, createRoutine)
 router.get('/all', middleware, readRoutines)

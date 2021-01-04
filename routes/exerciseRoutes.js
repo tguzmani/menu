@@ -17,7 +17,7 @@ const {
   createWeight,
   updateWeight,
   deleteWeight,
-} = require('../controllers/exercisecontroller.js')
+} = require('../controllers/exerciseController')
 
 router.post('/:routineId', middleware, createExercise)
 router.get('/all', middleware, readExercises)

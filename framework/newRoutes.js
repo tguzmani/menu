@@ -23,7 +23,7 @@ const {
   read${modelNamePlural},
   update${modelName},
   delete${modelName},
-} = require('../controllers/${modelNameLowerCase}controller.js')
+} = require('../controllers/${modelNameLowerCase}Controller')
 
 router.post('/', middleware, create${modelName})
 router.get('/all', middleware, read${modelNamePlural})

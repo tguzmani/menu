@@ -12,7 +12,7 @@ const {
   readWeights,
   updateWeight,
   deleteWeight,
-} = require('../controllers/weightcontroller.js')
+} = require('../controllers/weightController')
 
 router.post('/', middleware, createWeight)
 router.get('/all', middleware, readWeights)

@@ -1,7 +1,7 @@
 const User = require('../models/User')
 
 exports.readUser = async (req, res) => {
-  User.findById(req.params.userId)
+  User.findById(req.userId)
     .select('-password')
     .then(user => {
       if (!user) {

@@ -18,6 +18,15 @@ exports.createExercise = async (req, res) => {
 
 exports.readExercises = async (req, res) => {
   Exercise.find()
+    .populate('weights.weight')
+    .then(exercises => {
+      res.send(exercises)
+    })
+    .catch(error => res.status(500).json({ error: error.message }))
+}
+
+exports.readExercisesByRoutine = async (req, res) => {
+  Exercise.find({ routine: req.params.routineId })
     .then(exercises => res.send(exercises))
     .catch(error => res.status(500).json({ error: error.message }))
 }
@@ -25,6 +34,7 @@ exports.readExercises = async (req, res) => {
 exports.readExercise = async (req, res) => {
   Exercise.findById(req.params.exerciseId)
     .populate('weights.weight')
+    .sort({ createdAt: -1 })
     .then(exercise => {
       if (!exercise)
         return res.status(400).json({ message: 'Exercise not found' })
@@ -74,9 +84,9 @@ exports.createWeight = async (req, res) => {
       if (!exercise)
         return res.status(400).json({ message: 'Exercise not found' })
       else {
-        const weight = exercise.weights
-          .filter(weight => weight.weight._id == req.params.weightId)
-          .pop()
+        const weight = exercise.weights.find(
+          weight => weight.weight._id == req.params.weightId
+        )
 
         if (weight)
           return res
@@ -94,12 +104,21 @@ exports.createWeight = async (req, res) => {
                 .json({ message: 'Barbell number cannot be different than 1' })
 
             exercise.weights.push({
-              weight: { _id: req.params.weightId },
+              weight: {
+                _id: req.params.weightId,
+                value: weight.value,
+                name: weight.name,
+                type: weight.type,
+              },
               number: req.body.number,
             })
 
             exercise.save()
-            res.send(exercise)
+            res.send(
+              exercise.weights.find(
+                weight => weight.weight._id == req.params.weightId
+              )
+            )
           })
           .catch(error => res.status(500).json({ error: error.message }))
       }
@@ -155,7 +174,7 @@ exports.deleteWeight = async (req, res) => {
 
           exercise.weights.pull({ _id: elementId })
           exercise.save()
-          res.send(exercise)
+          res.send(exercise.weights)
         } catch (error) {
           return res
             .status(400)

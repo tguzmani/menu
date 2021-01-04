@@ -10,7 +10,9 @@
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "new-model": "node ./framework/newModel",
     "new-controller": "node ./framework/newController",
-    "new-routes": "node ./framework/newRoutes"
+    "new-routes": "node ./framework/newRoutes",
+    "new-redux-files": "node ./framework/newReduxFiles",
+    "connect-redux": "node ./framework/connectRedux"
   },
   "author": "Tomás Guzmán",
   "license": "ISC",

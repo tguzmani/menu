@@ -6,6 +6,6 @@ const { auth } = require('../middleware/auth')
 
 const { readUser } = require('../controllers/userController')
 
-router.get('/:userId', auth, readUser)
+router.get('/', auth, readUser)
 
 module.exports = router

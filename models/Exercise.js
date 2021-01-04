@@ -7,11 +7,13 @@ const exerciseSchema = new mongoose.Schema(
       type: String,
       required: true,
       trim: true,
+      default: 'New Exercise',
     },
 
     repetitions: {
       type: Number,
       required: true,
+      default: 0,
     },
 
     weights: [
@@ -27,6 +29,7 @@ const exerciseSchema = new mongoose.Schema(
     sets: {
       type: Number,
       required: true,
+      default: 0,
     },
 
     routine: {

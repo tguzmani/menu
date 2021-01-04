@@ -18,7 +18,7 @@ const useRoute = route => {
   app.use(`/api/${route}`, require(`./routes/${route}Routes`))
 }
 
-routes = ['auth', 'routine', 'exercise', 'weight']
+routes = ['auth', 'user', 'routine', 'exercise', 'weight']
 routes.forEach(route => useRoute(route))
 
 const PORT = process.env.PORT || 8000

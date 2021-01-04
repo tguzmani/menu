@@ -9,6 +9,7 @@ const middleware = [auth, monitor]
 const {
   createExercise,
   readExercise,
+  readExercisesByRoutine,
   readExercises,
   updateExercise,
   deleteExercise,
@@ -20,6 +21,7 @@ const {
 
 router.post('/:routineId', middleware, createExercise)
 router.get('/all', middleware, readExercises)
+router.get('/byRoutine/:routineId', middleware, readExercisesByRoutine)
 router.get('/:exerciseId', middleware, readExercise)
 router.put('/:exerciseId', middleware, updateExercise)
 router.delete('/:exerciseId', middleware, deleteExercise)

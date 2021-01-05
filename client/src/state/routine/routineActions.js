@@ -2,8 +2,9 @@ import {
   ERROR_ROUTINE,
   LOADING_ROUTINE,
   CREATE_ROUTINE,
-  READ_ROUTINE,
   READ_ROUTINES,
+  POP_ROUTINE_SESSION,
+  CREATE_ROUTINE_SESSION,
   UPDATE_ROUTINE,
   DELETE_ROUTINE,
 } from './routineTypes'
@@ -54,4 +55,36 @@ export const deleteRoutine = routine => async dispatch => {
   } catch (error) {
     dispatch({ type: ERROR_ROUTINE, payload: error.response.data.message })
   }
+}
+
+export const createSession = routine => async dispatch => {
+  // setLoading()(dispatch)
+  try {
+    const res = await axios.put(
+      `/api/routine/${routine._id}/createSession`,
+      routine,
+      config
+    )
+    dispatch({ type: CREATE_ROUTINE_SESSION, payload: res.data })
+  } catch (error) {
+    dispatch({ type: ERROR_ROUTINE, payload: error.response.data.message })
+  }
+
+  readRoutines()(dispatch)
+}
+
+export const popSession = routine => async dispatch => {
+  // setLoading()(dispatch)
+  try {
+    const res = await axios.put(
+      `/api/routine/${routine._id}/popSession`,
+      routine,
+      config
+    )
+    dispatch({ type: POP_ROUTINE_SESSION, payload: res.data })
+  } catch (error) {
+    dispatch({ type: ERROR_ROUTINE, payload: error.response.data.message })
+  }
+
+  readRoutines()(dispatch)
 }

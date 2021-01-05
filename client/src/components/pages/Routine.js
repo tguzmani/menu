@@ -7,7 +7,7 @@ import {
   readExercises,
 } from '../../state/exercise/exerciseActions'
 
-import { readRoutines } from '../../state/routine/routineActions'
+import { readRoutines, createSession } from '../../state/routine/routineActions'
 import Exercises from '../exercise/Exercises'
 import Loading from '../layout/Loading'
 
@@ -20,6 +20,7 @@ const Routine = ({
   routineState,
   exerciseState,
   createExercise,
+  createSession,
   readExercises,
   readRoutines,
 }) => {
@@ -36,7 +37,7 @@ const Routine = ({
   }
 
   const handleSuccess = () => {
-    console.log('Success!')
+    createSession(routine)
     setSuccess(true)
   }
 
@@ -81,7 +82,7 @@ const Routine = ({
         <Button block onClick={onClick} className='mt-3'>
           Add Exercise
         </Button>
-      ) : (
+      ) : thisRoutineExercises.length > 0 ? (
         <Button
           className='mt-3'
           block
@@ -91,12 +92,19 @@ const Routine = ({
         >
           {success ? 'Success' : 'Mark as done'}
         </Button>
+      ) : (
+        'Press Edit to add exercises to this routine'
       )}
     </div>
   )
 }
 
-const mapActionsToProps = { readRoutines, readExercises, createExercise }
+const mapActionsToProps = {
+  readRoutines,
+  readExercises,
+  createExercise,
+  createSession,
+}
 
 const mapStateToProps = state => ({
   routineState: state.routine,

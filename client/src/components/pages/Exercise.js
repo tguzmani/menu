@@ -38,7 +38,7 @@ const Exercise = ({ exerciseState, readExercises }) => {
         <h4>{totalWeight(exercise)} lb</h4>
       </div>
 
-      <AccordionButton text='Add Exercise' {...bindToggle} />
+      <AccordionButton text='Add Weight' {...bindToggle} />
       {toggle && <WeightSelector exerciseId={exercise._id} />}
       <ExerciseWeights weights={exercise.weights} exerciseId={exercise._id} />
     </div>

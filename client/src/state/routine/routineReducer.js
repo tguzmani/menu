@@ -2,7 +2,8 @@ import {
   ERROR_ROUTINE,
   LOADING_ROUTINE,
   CREATE_ROUTINE,
-  READ_ROUTINE,
+  CREATE_ROUTINE_SESSION,
+  POP_ROUTINE_SESSION,
   READ_ROUTINES,
   UPDATE_ROUTINE,
   DELETE_ROUTINE,
@@ -49,6 +50,10 @@ const routineReducer = (state = initialState, action) => {
           routine => routine._id !== action.payload._id
         ),
       }
+
+    case CREATE_ROUTINE_SESSION:
+    case POP_ROUTINE_SESSION:
+      return { ...state }
 
     default:
       return state

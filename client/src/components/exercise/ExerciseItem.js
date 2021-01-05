@@ -6,17 +6,12 @@ import { ListGroupItem, Row, Col } from 'react-bootstrap'
 import { totalWeight } from '../../utils/exercise'
 
 const ExerciseItem = ({ exercise, offset }) => {
-  const { name, repetitions, sets, weights } = exercise
-
-  // const totalWeight = weights.reduce(
-  //   (sum, weight) => sum + weight.weight.value * weight.number,
-  //   0
-  // )
+  const { name, repetitions, sets } = exercise
 
   return (
     <ListGroupItem action as={Link} to={`/exercises/${exercise._id}`}>
       <Row className='align-items-center'>
-        <Col>
+        <Col xs={8}>
           <Row>
             <Col>
               <h5>{name}</h5>

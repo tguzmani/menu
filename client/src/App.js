@@ -16,6 +16,7 @@ import Navigation from './components/layout/Navigation'
 import Dashboard from './components/pages/Dashboard'
 import Login from './components/pages/Login'
 import Routine from './components/pages/Routine'
+import RoutineHistory from './components/pages/RoutineHistory'
 import Exercise from './components/pages/Exercise'
 import NotFound from './components/pages/NotFound'
 import WeightsPage from './components/pages/WeightsPage'
@@ -31,6 +32,11 @@ const App = () => {
               <PrivateRoute exact path='/' component={Dashboard} />
               <Route exact path='/login' component={Login} />
               <PrivateRoute exact path='/routines/:id' component={Routine} />
+              <PrivateRoute
+                exact
+                path='/routines/:id/history'
+                component={RoutineHistory}
+              />
               <PrivateRoute exact path='/weights' component={WeightsPage} />
               <PrivateRoute exact path='/weights/:id' component={Routine} />
               <PrivateRoute exact path='/exercises/:id' component={Exercise} />

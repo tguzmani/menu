@@ -17,6 +17,8 @@ const {
   createWeight,
   updateWeight,
   deleteWeight,
+  moveDown,
+  moveUp,
 } = require('../controllers/exerciseController')
 
 router.post('/:routineId', middleware, createExercise)
@@ -27,6 +29,8 @@ router.put('/:exerciseId', middleware, updateExercise)
 router.delete('/:exerciseId', middleware, deleteExercise)
 
 router.get('/:exerciseId/totalWeight', middleware, getTotalWeight)
+router.put('/:exerciseId/moveDown', middleware, moveDown)
+router.put('/:exerciseId/moveUp', middleware, moveUp)
 
 router.post('/:exerciseId/:weightId', middleware, createWeight)
 router.put('/:exerciseId/:weightId', middleware, updateWeight)

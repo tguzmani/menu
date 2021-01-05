@@ -50,7 +50,7 @@ export const setLoading = () => dispatch => {
 export const create${modelName} = ${modelNameLowerCase} => async dispatch => {
   setLoading()(dispatch)
   try {
-    const res = await axios.post(\`api/${modelNameLowerCase}/\`, ${modelNameLowerCase}, config)
+    const res = await axios.post(/\`api/${modelNameLowerCase}/\`, ${modelNameLowerCase}, config)
     dispatch({ type: CREATE_${modelNameUpperCase}, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_${modelNameUpperCase}, payload: error.response.data.message })
@@ -60,7 +60,7 @@ export const create${modelName} = ${modelNameLowerCase} => async dispatch => {
 export const read${modelNamePlural} = () => async dispatch => {
   setLoading()(dispatch)
   try {
-    const res = await axios.get('api/${modelNameLowerCase}/all')
+    const res = await axios.get(/'api/${modelNameLowerCase}/all')
     dispatch({ type: READ_${modelNamePluralUpperCase}, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_${modelNameUpperCase}, payload: error.response.data.message })
@@ -70,7 +70,7 @@ export const read${modelNamePlural} = () => async dispatch => {
 export const update${modelName} = ${modelNameLowerCase} => async dispatch => {
   setLoading()(dispatch)
   try {
-    const res = await axios.put(\`api/${modelNameLowerCase}/\${${modelNameLowerCase}._id}\`, ${modelNameLowerCase}, config)
+    const res = await axios.put(/\`api/${modelNameLowerCase}/\${${modelNameLowerCase}._id}\`, ${modelNameLowerCase}, config)
     dispatch({ type: UPDATE_${modelNameUpperCase}, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_${modelNameUpperCase}, payload: error.response.data.message })
@@ -80,7 +80,7 @@ export const update${modelName} = ${modelNameLowerCase} => async dispatch => {
 export const delete${modelName} = ${modelNameLowerCase} => async dispatch => {
   setLoading()(dispatch)
   try {
-    const res = await axios.delete(\`api/task/\${${modelNameLowerCase}._id}\`)
+    const res = await axios.delete(/\`api/${modelNameLowerCase}/\${${modelNameLowerCase}._id}\`)
     dispatch({ type: DELETE_${modelNameUpperCase}, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_${modelNameUpperCase}, payload: error.response.data.message })

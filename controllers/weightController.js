@@ -40,7 +40,13 @@ exports.deleteWeight = async (req, res) => {
   Weight.findByIdAndDelete(req.params.weightId)
     .then(weight => {
       if (!weight) return res.status(400).json({ message: 'Weight not found' })
-      else res.send({ message: 'Weight deleted' })
+      else res.send(weight)
     })
+    .catch(error => res.status(500).json({ error: error.message }))
+}
+
+exports.readWeightTypes = async (req, res) => {
+  Weight.distinct('type')
+    .then(types => res.send(types))
     .catch(error => res.status(500).json({ error: error.message }))
 }

@@ -1,17 +1,18 @@
-import { 
-  ERROR_WEIGHT, 
+import {
+  ERROR_WEIGHT,
   LOADING_WEIGHT,
   CREATE_WEIGHT,
-  READ_WEIGHT,
   READ_WEIGHTS,
+  READ_WEIGHT_TYPES,
   UPDATE_WEIGHT,
   DELETE_WEIGHT,
 } from './weightTypes'
 
-const initialState = { 
-  loading: false, 
-  error: null, 
+const initialState = {
+  loading: false,
+  error: null,
   weights: [],
+  types: [],
 }
 
 const weightReducer = (state = initialState, action) => {
@@ -31,6 +32,9 @@ const weightReducer = (state = initialState, action) => {
 
     case READ_WEIGHTS:
       return { ...state, loading: false, weights: action.payload }
+
+    case READ_WEIGHT_TYPES:
+      return { ...state, loading: false, types: action.payload }
 
     case UPDATE_WEIGHT:
       return {
@@ -56,4 +60,3 @@ const weightReducer = (state = initialState, action) => {
 }
 
 export default weightReducer
-

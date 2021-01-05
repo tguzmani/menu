@@ -10,6 +10,11 @@ const exerciseSchema = new mongoose.Schema(
       default: 'New Exercise',
     },
 
+    order: {
+      type: Number,
+      default: 0,
+    },
+
     repetitions: {
       type: Number,
       required: true,

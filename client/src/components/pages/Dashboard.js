@@ -5,7 +5,7 @@ import Routines from '../routine/Routines'
 const Dashboard = () => {
   return (
     <div>
-      <h1 className='font-weight-bold my-5'>Routines</h1>
+      <h1 className='my-5'>Routines</h1>
       <Routines />
     </div>
   )

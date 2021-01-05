@@ -2,10 +2,10 @@ import {
   ERROR_WEIGHT,
   LOADING_WEIGHT,
   CREATE_WEIGHT,
-  READ_WEIGHT,
   READ_WEIGHTS,
   UPDATE_WEIGHT,
   DELETE_WEIGHT,
+  READ_WEIGHT_TYPES,
 } from './weightTypes'
 
 import axios from 'axios'
@@ -49,8 +49,18 @@ export const updateWeight = weight => async dispatch => {
 export const deleteWeight = weight => async dispatch => {
   setLoading()(dispatch)
   try {
-    const res = await axios.delete(`/api/task/${weight._id}`)
+    const res = await axios.delete(`/api/weight/${weight._id}`)
     dispatch({ type: DELETE_WEIGHT, payload: res.data })
+  } catch (error) {
+    dispatch({ type: ERROR_WEIGHT, payload: error.response.data.message })
+  }
+}
+
+export const readWeightTypes = () => async dispatch => {
+  setLoading()(dispatch)
+  try {
+    const res = await axios.get('/api/weight/types')
+    dispatch({ type: READ_WEIGHT_TYPES, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_WEIGHT, payload: error.response.data.message })
   }

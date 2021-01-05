@@ -1,26 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import { BsFillXCircleFill, BsFillExclamationCircleFill } from 'react-icons/bs'
 import { Spinner } from 'react-bootstrap'
 
+import useConfirmation from '../../hooks/useConfirmation'
+
 const DeleteButton = ({ action, loading }) => {
-  const [confirm, setConfirm] = useState(false)
-
-  const handleConfirm = () => {
-    setConfirm(true)
-  }
-
-  useEffect(() => {
-    if (confirm)
-      setTimeout(() => {
-        setConfirm(false)
-      }, 2500)
-  }, [confirm])
+  const [confirm, handleConfirm] = useConfirmation()
 
   if (loading) return <Spinner />
 
   return (
-    <div className='text-right'>
+    <div className={`text-right ${confirm ? 'confirm' : ''}`}>
       {confirm ? (
         <BsFillExclamationCircleFill size='0.8em' onClick={action} />
       ) : (

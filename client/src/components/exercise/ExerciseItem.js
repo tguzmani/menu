@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { ListGroupItem, Row, Col } from 'react-bootstrap'
 import { totalWeight } from '../../utils/exercise'
 
-const ExerciseItem = ({ exercise }) => {
+const ExerciseItem = ({ exercise, offset }) => {
   const { name, repetitions, sets, weights } = exercise
 
   // const totalWeight = weights.reduce(
@@ -27,7 +27,7 @@ const ExerciseItem = ({ exercise }) => {
           </Row>
         </Col>
         <Col className='text-right'>
-          {repetitions} x {totalWeight(exercise)} lb
+          {repetitions + offset} x {totalWeight(exercise)} lb
         </Col>
       </Row>
     </ListGroupItem>

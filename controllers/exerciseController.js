@@ -1,24 +1,33 @@
 const Exercise = require('../models/Exercise')
 const Weight = require('../models/Weight')
 const mongoose = require('mongoose')
-const { ObjectId } = mongoose.Types
 
 exports.createExercise = async (req, res) => {
-  const exercise = Exercise({
-    ...req.body,
-    routine: req.params.routineId,
-    user: req.userId,
-  })
+  Exercise.findOne({ routine: req.params.routineId })
+    .select('order')
+    .sort({ order: -1 })
+    .then(lastExercise => {
+      const exercise = Exercise({
+        ...req.body,
+        routine: req.params.routineId,
+        user: req.userId,
+        order: lastExercise ? lastExercise.order + 1 : 1,
+      })
 
-  exercise
-    .save()
-    .then(exercise => res.send(exercise))
+      exercise
+        .save()
+        .then(exercise => res.send(exercise))
+        .catch(error => res.status(500).json({ error: error.message }))
+    })
     .catch(error => res.status(500).json({ error: error.message }))
+
+  return
 }
 
 exports.readExercises = async (req, res) => {
   Exercise.find()
     .populate('weights.weight')
+    .sort({ order: 1 })
     .then(exercises => {
       res.send(exercises)
     })
@@ -27,6 +36,7 @@ exports.readExercises = async (req, res) => {
 
 exports.readExercisesByRoutine = async (req, res) => {
   Exercise.find({ routine: req.params.routineId })
+
     .then(exercises => res.send(exercises))
     .catch(error => res.status(500).json({ error: error.message }))
 }
@@ -34,7 +44,6 @@ exports.readExercisesByRoutine = async (req, res) => {
 exports.readExercise = async (req, res) => {
   Exercise.findById(req.params.exerciseId)
     .populate('weights.weight')
-    .sort({ createdAt: -1 })
     .then(exercise => {
       if (!exercise)
         return res.status(400).json({ message: 'Exercise not found' })
@@ -60,7 +69,7 @@ exports.deleteExercise = async (req, res) => {
     .then(exercise => {
       if (!exercise)
         return res.status(400).json({ message: 'Exercise not found' })
-      else res.send({ message: 'Exercise deleted' })
+      else res.send(exercise)
     })
     .catch(error => res.status(500).json({ error: error.message }))
 }
@@ -73,6 +82,70 @@ exports.getTotalWeight = async (req, res) => {
         return res.status(400).json({ message: 'Exercise not found' })
       else res.send(exercise.totalWeight)
     })
+    .catch(error => res.status(500).json({ error: error.message }))
+}
+
+exports.moveDown = async (req, res) => {
+  Exercise.findById(req.params.exerciseId)
+    .then(exercise1 =>
+      Exercise.findOne({
+        order: { $gt: exercise1.order },
+        routine: exercise1.routine,
+      })
+        .sort({ order: 1 })
+        .then(exercise2 =>
+          Exercise.findByIdAndUpdate(
+            exercise1._id,
+            { order: exercise2.order },
+            { new: true }
+          )
+            .then(exercise1Updated =>
+              Exercise.findByIdAndUpdate(
+                exercise2._id,
+                { order: exercise1.order },
+                { new: true }
+              )
+                .then(exercise2Updated =>
+                  res.send({ exercise1Updated, exercise2Updated })
+                )
+                .catch(error => res.status(500).json({ error: error.message }))
+            )
+            .catch(error => res.status(500).json({ error: error.message }))
+        )
+        .catch(error => res.status(500).json({ error: error.message }))
+    )
+    .catch(error => res.status(500).json({ error: error.message }))
+}
+
+exports.moveUp = async (req, res) => {
+  Exercise.findById(req.params.exerciseId)
+    .then(exercise1 =>
+      Exercise.findOne({
+        order: { $lt: exercise1.order },
+        routine: exercise1.routine,
+      })
+        .sort({ order: -1 })
+        .then(exercise2 =>
+          Exercise.findByIdAndUpdate(
+            exercise1._id,
+            { order: exercise2.order },
+            { new: true }
+          )
+            .then(exercise1Updated =>
+              Exercise.findByIdAndUpdate(
+                exercise2._id,
+                { order: exercise1.order },
+                { new: true }
+              )
+                .then(exercise2Updated =>
+                  res.send({ exercise1Updated, exercise2Updated })
+                )
+                .catch(error => res.status(500).json({ error: error.message }))
+            )
+            .catch(error => res.status(500).json({ error: error.message }))
+        )
+        .catch(error => res.status(500).json({ error: error.message }))
+    )
     .catch(error => res.status(500).json({ error: error.message }))
 }
 

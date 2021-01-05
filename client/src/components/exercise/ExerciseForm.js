@@ -7,7 +7,7 @@ import { updateExercise } from '../../state/exercise/exerciseActions'
 
 const ExerciseForm = ({ exercise, updateExercise }) => {
   const [exerciseData, setExerciseData] = useState({
-    name: exercise.name || '',
+    name: exercise.name === 'New Exercise' ? '' : exercise.name,
     repetitions: exercise.repetitions || '',
     sets: exercise.sets || '',
   })

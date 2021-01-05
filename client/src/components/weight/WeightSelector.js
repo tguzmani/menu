@@ -25,7 +25,7 @@ const WeightSelector = ({
     console.log(weightId)
   }
 
-  const onClick = e => {
+  const handleSubmit = e => {
     e.preventDefault()
     const weight = { _id: weightId, number: parseInt(number) }
     addWeightExercise(weight, exerciseId)
@@ -33,11 +33,11 @@ const WeightSelector = ({
 
   useEffect(() => {
     readWeights()
-  }, [])
+  }, [readWeights])
 
   return (
     <>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Row>
           <Col xs={8}>
             <Form.Group>
@@ -67,7 +67,11 @@ const WeightSelector = ({
         </Form.Row>
       </Form>
 
-      <Button block disabled={number <= 0 || isNaN(number)} onClick={onClick}>
+      <Button
+        block
+        disabled={number <= 0 || isNaN(number)}
+        onClick={handleSubmit}
+      >
         Add Weight
       </Button>
     </>

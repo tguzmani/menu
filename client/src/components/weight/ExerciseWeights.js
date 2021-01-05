@@ -6,7 +6,7 @@ import ExerciseWeightItem from './ExerciseWeightItem'
 
 const ExerciseWeights = ({ weights, exerciseId }) => {
   return (
-    <ListGroup>
+    <ListGroup className='mt-3'>
       {weights.map(weight => (
         <ExerciseWeightItem
           weight={weight}

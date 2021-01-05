@@ -12,10 +12,12 @@ const {
   readWeights,
   updateWeight,
   deleteWeight,
+  readWeightTypes,
 } = require('../controllers/weightController')
 
 router.post('/', middleware, createWeight)
 router.get('/all', middleware, readWeights)
+router.get('/types', middleware, readWeightTypes)
 router.get('/:weightId', middleware, readWeight)
 router.put('/:weightId', middleware, updateWeight)
 router.delete('/:weightId', middleware, deleteWeight)

@@ -52,9 +52,9 @@ export const updateExercise = exercise => async dispatch => {
 }
 
 export const deleteExercise = exercise => async dispatch => {
-  setLoading()(dispatch)
+  // setLoading()(dispatch)
   try {
-    const res = await axios.delete(`/api/task/${exercise._id}`)
+    const res = await axios.delete(`/api/exercise/${exercise._id}`)
     dispatch({ type: DELETE_EXERCISE, payload: res.data })
   } catch (error) {
     dispatch({ type: ERROR_EXERCISE, payload: error.response.data.message })

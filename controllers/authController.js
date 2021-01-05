@@ -26,7 +26,7 @@ exports.signup = async (req, res) => {
     user.password = undefined
 
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET)
-    res.cookie('t', token, { expire: new Date() + 3600, httpOnly: true })
+    res.cookie('t', token, { maxAge: 1000 * 60 * 120, httpOnly: true })
     res.json(user)
   } catch (error) {
     res.status(400).json({ error: error.message })
@@ -60,7 +60,7 @@ exports.signin = async (req, res) => {
 
     const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET)
     // res.cookie('t', token, { expire: new Date() + 999999, httpOnly: true })
-    res.cookie('t', token, { maxAge: 999999, httpOnly: true })
+    res.cookie('t', token, { maxAge: 1000 * 60 * 120, httpOnly: true })
 
     return res.json(token)
   } catch (error) {

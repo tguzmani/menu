@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="CDB4FCD6-D3A3-1829-5207-0419A594A560" name="REFERENCES">
+<createdBy>Tomas</createdBy>
+<createdTime>2020-12-26 19:14:41 UTC</createdTime>
+<ownerDesignName>exercises</ownerDesignName>
+<engineerTo>
+<item key="593AE57F-017C-8A7F-96B5-09DD4F5EF20A" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id" id="34AA0654-F5B9-B9D2-C560-1C14C400BFA2">
+<createdBy>Tomas</createdBy>
+<createdTime>2020-12-26 19:14:48 UTC</createdTime>
+<ownerDesignName>exercises</ownerDesignName>
+<engineerTo>
+<item key="593AE57F-017C-8A7F-96B5-09DD4F5EF20A" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="name" id="54B8857F-08C9-244E-BC20-D2B84D2BDF09">
+<createdBy>Tomas</createdBy>
+<createdTime>2020-12-26 19:15:00 UTC</createdTime>
+<ownerDesignName>exercises</ownerDesignName>
+<engineerTo>
+<item key="593AE57F-017C-8A7F-96B5-09DD4F5EF20A" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="weight" id="A5E4D217-E715-C185-3C89-7C4EEA760E7C">
+<createdBy>Tomas</createdBy>
+<createdTime>2020-12-26 19:36:44 UTC</createdTime>
+<ownerDesignName>exercises</ownerDesignName>
+<engineerTo>
+<item key="593AE57F-017C-8A7F-96B5-09DD4F5EF20A" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="units" id="34AE65A9-7937-A010-FB95-70F01F402387">
+<createdBy>Tomas</createdBy>
+<createdTime>2020-12-26 19:15:51 UTC</createdTime>
+<ownerDesignName>exercises</ownerDesignName>
+<engineerTo>
+<item key="593AE57F-017C-8A7F-96B5-09DD4F5EF20A" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="repetitions" id="8E0CD730-9155-9EBC-3ED0-9C1892AD2193">
+<createdBy>Tomas</createdBy>
+<createdTime>2020-12-26 19:17:06 UTC</createdTime>
+<ownerDesignName>exercises</ownerDesignName>
+<engineerTo>
+<item key="593AE57F-017C-8A7F-96B5-09DD4F5EF20A" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="sets" id="0E6A54F5-E4FB-0B85-0B4F-3C4EBF97CE83">
+<createdBy>Tomas</createdBy>
+<createdTime>2020-12-26 19:17:10 UTC</createdTime>
+<ownerDesignName>exercises</ownerDesignName>
+<engineerTo>
+<item key="593AE57F-017C-8A7F-96B5-09DD4F5EF20A" value="true"/>
+</engineerTo>
+<use>0</use>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="F45AB9F7-8895-F471-8F76-2AFC747C52BE" name="REFERENCE PK">
+<createdBy>Tomas</createdBy>
+<createdTime>2020-12-26 19:14:59 UTC</createdTime>
+<ownerDesignName>exercises</ownerDesignName>
+<engineerTo>
+<item key="593AE57F-017C-8A7F-96B5-09DD4F5EF20A" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>34AA0654-F5B9-B9D2-C560-1C14C400BFA2</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<oracle.dbtools.crest.model.design.logical.LogicalDesign>
+   <object objectType="Entity" objectID="00F4A4FD-B7C3-EAF3-C84C-1C2CC0B714D9" name="EXERCISES" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="77F03BCE-C911-075F-F4F3-A1EDDA36BB83" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Entity" objectID="1B7DEAC8-3F59-B1D6-CD95-41BC464E01C0" name="MUSCLES" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="77F03BCE-C911-075F-F4F3-A1EDDA36BB83" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Entity" objectID="CDB4FCD6-D3A3-1829-5207-0419A594A560" name="REFERENCES" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="77F03BCE-C911-075F-F4F3-A1EDDA36BB83" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Entity" objectID="0370F68D-887C-7B29-3B19-8BB61593497C" name="ROUTINES" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="77F03BCE-C911-075F-F4F3-A1EDDA36BB83" propertySourceId="" propertyTargetId=""/>
+   <object objectType="Entity" objectID="91D09330-2434-E128-B03D-A20A6FE637B8" name="SESSIONS" seqName="seg_0" propertyClassName="oracle.dbtools.crest.model.design.logical.Entity" propertyParentId="77F03BCE-C911-075F-F4F3-A1EDDA36BB83" propertySourceId="" propertyTargetId=""/>
+</oracle.dbtools.crest.model.design.logical.LogicalDesign>

@@ -7,6 +7,7 @@ import {
   DELETE_EXERCISE,
   ADD_WEIGHT_EXERCISE,
   DELETE_WEIGHT_EXERCISE,
+  MOVE_EXERCISE,
 } from './exerciseTypes'
 
 const initialState = {
@@ -64,6 +65,23 @@ const exerciseReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         exercises,
+      }
+
+    case MOVE_EXERCISE:
+      const { exercise1, exercise2 } = action.payload
+
+      console.log(exercise1, exercise2)
+
+      return {
+        ...state,
+        loading: false,
+        exercises: state.exercises.map(exercise =>
+          exercise._id === exercise1._id
+            ? { ...exercise, order: exercise1.order }
+            : exercise._id === exercise2._id
+            ? { ...exercise, order: exercise2.order }
+            : exercise
+        ),
       }
 
     case DELETE_WEIGHT_EXERCISE:

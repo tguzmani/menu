@@ -51,9 +51,9 @@ const Routine = ({
 
   if (!routine) return <Loading />
 
-  const thisRoutineExercises = exercises.filter(
-    exercise => exercise.routine === routine._id
-  )
+  const thisRoutineExercises = exercises
+    .filter(exercise => exercise.routine === routine._id)
+    .sort((a, b) => a.order - b.order)
 
   return (
     <div>

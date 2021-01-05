@@ -9,10 +9,26 @@ import DeleteButton from '../layout/DeleteButton'
 
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 
-import { deleteExercise } from '../../state/exercise/exerciseActions'
+import {
+  deleteExercise,
+  moveExercise,
+} from '../../state/exercise/exerciseActions'
 
-const ExerciseItemEdit = ({ exercise, orders, deleteExercise }) => {
+const ExerciseItemEdit = ({
+  exercise,
+  orders,
+  deleteExercise,
+  moveExercise,
+}) => {
   const { name, repetitions, sets, weights } = exercise
+
+  const handleMoveDown = () => {
+    moveExercise(exercise, 'moveDown')
+  }
+
+  const handleMoveUp = () => {
+    moveExercise(exercise, 'moveUp')
+  }
 
   return (
     <ListGroupItem>
@@ -31,14 +47,14 @@ const ExerciseItemEdit = ({ exercise, orders, deleteExercise }) => {
           <Row>
             <Col>
               {exercise.order !== Math.min(...orders) && (
-                <IoIosArrowUp className='my-1' />
+                <IoIosArrowUp onClick={handleMoveUp} className='my-1' />
               )}
             </Col>
           </Row>
           <Row>
             <Col>
               {exercise.order !== Math.max(...orders) && (
-                <IoIosArrowDown className='my-1' />
+                <IoIosArrowDown onClick={handleMoveDown} className='my-1' />
               )}
             </Col>
           </Row>
@@ -51,7 +67,7 @@ const ExerciseItemEdit = ({ exercise, orders, deleteExercise }) => {
   )
 }
 
-const mapActionsToProps = { deleteExercise }
+const mapActionsToProps = { deleteExercise, moveExercise }
 
 const mapStateToProps = state => ({ exercises: state.exercise.exercises })
 

@@ -7,6 +7,7 @@ import {
   DELETE_EXERCISE,
   ADD_WEIGHT_EXERCISE,
   DELETE_WEIGHT_EXERCISE,
+  MOVE_EXERCISE,
 } from './exerciseTypes'
 
 import axios from 'axios'
@@ -74,6 +75,23 @@ export const addWeightExercise = (weight, exerciseId) => async dispatch => {
       payload: { data: res.data, exerciseId },
     })
   } catch (error) {
+    dispatch({ type: ERROR_EXERCISE, payload: error.response.data.message })
+  }
+}
+
+export const moveExercise = (exercise, direction) => async dispatch => {
+  try {
+    const res = await axios.put(
+      `/api/exercise/${exercise._id}/${direction}`,
+      {},
+      config
+    )
+    dispatch({
+      type: MOVE_EXERCISE,
+      payload: res.data,
+    })
+  } catch (error) {
+    console.log(error)
     dispatch({ type: ERROR_EXERCISE, payload: error.response.data.message })
   }
 }

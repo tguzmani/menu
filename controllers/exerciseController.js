@@ -106,7 +106,10 @@ exports.moveDown = async (req, res) => {
                 { new: true }
               )
                 .then(exercise2Updated =>
-                  res.send({ exercise1Updated, exercise2Updated })
+                  res.send({
+                    exercise1: exercise1Updated,
+                    exercise2: exercise2Updated,
+                  })
                 )
                 .catch(error => res.status(500).json({ error: error.message }))
             )
@@ -138,7 +141,10 @@ exports.moveUp = async (req, res) => {
                 { new: true }
               )
                 .then(exercise2Updated =>
-                  res.send({ exercise1Updated, exercise2Updated })
+                  res.send({
+                    exercise1: exercise1Updated,
+                    exercise2: exercise2Updated,
+                  })
                 )
                 .catch(error => res.status(500).json({ error: error.message }))
             )

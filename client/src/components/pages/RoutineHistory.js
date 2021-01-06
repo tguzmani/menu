@@ -23,7 +23,7 @@ const Routine = ({ routineState, readRoutines, popSession }) => {
     if (routines.length === 0) readRoutines()
   }, [])
 
-  if (loading) return <Loading />
+  // if (loading) return <Loading />
 
   routine = routines.find(routine => routine._id === id)
 
@@ -47,8 +47,8 @@ const Routine = ({ routineState, readRoutines, popSession }) => {
               </ListGroupItem>
             ))}
           </ListGroup>
-          <Button block onClick={onClick} className='mt-3'>
-            Pop Session
+          <Button block onClick={onClick} className='mt-3' disabled={loading}>
+            {loading ? 'Popping...' : 'Pop Session'}
           </Button>
         </>
       ) : (

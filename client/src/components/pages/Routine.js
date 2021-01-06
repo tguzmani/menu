@@ -46,7 +46,7 @@ const Routine = ({
     if (routines.length === 0) readRoutines()
   }, [])
 
-  if (loadingRoutine || loadingExercise) return <Loading />
+  if (loadingRoutine) return <Loading />
 
   routine = routines.find(routine => routine._id === id)
 
@@ -72,6 +72,7 @@ const Routine = ({
           </>
         )}
       </div>
+
       <Exercises
         exercises={thisRoutineExercises}
         editing={editing}
@@ -79,8 +80,13 @@ const Routine = ({
       />
 
       {editing ? (
-        <Button block onClick={onClick} className='mt-3'>
-          Add Exercise
+        <Button
+          block
+          onClick={onClick}
+          className='mt-3'
+          disabled={loadingExercise}
+        >
+          {loadingExercise ? 'Adding...' : 'Add Exercise'}
         </Button>
       ) : thisRoutineExercises.length > 0 ? (
         <Button

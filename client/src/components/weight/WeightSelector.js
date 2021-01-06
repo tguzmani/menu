@@ -10,6 +10,7 @@ const WeightSelector = ({
   readWeights,
   addWeightExercise,
   exerciseId,
+  loading,
 }) => {
   const { weights } = weightState
 
@@ -69,10 +70,10 @@ const WeightSelector = ({
 
       <Button
         block
-        disabled={number <= 0 || isNaN(number)}
+        disabled={number <= 0 || isNaN(number) || loading}
         onClick={handleSubmit}
       >
-        Add Weight
+        {loading ? 'Adding...' : 'Add Weight'}
       </Button>
     </>
   )

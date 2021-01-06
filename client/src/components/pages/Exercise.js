@@ -27,7 +27,7 @@ const Exercise = ({ exerciseState, readExercises }) => {
 
   exercise = exercises.find(exercise => exercise._id === id)
 
-  if (loading || !exercise) return <Loading />
+  if (!exercise) return <Loading />
 
   return (
     <div>
@@ -39,7 +39,7 @@ const Exercise = ({ exerciseState, readExercises }) => {
       </div>
 
       <AccordionButton text='Add Weight' {...bindToggle} />
-      {toggle && <WeightSelector exerciseId={exercise._id} />}
+      {toggle && <WeightSelector loading={loading} exerciseId={exercise._id} />}
       <ExerciseWeights weights={exercise.weights} exerciseId={exercise._id} />
     </div>
   )

@@ -36,7 +36,7 @@ const ExerciseForm = ({ exercise, updateExercise }) => {
   }
 
   const onClick = () => {
-    updateExercise({ ...exerciseData, _id: exercise._id })
+    if (dirty) updateExercise({ ...exerciseData, _id: exercise._id })
   }
 
   return (
@@ -45,6 +45,7 @@ const ExerciseForm = ({ exercise, updateExercise }) => {
         <Form.Group>
           <Form.Label>Exercise name</Form.Label>
           <Form.Control
+            onBlur={onClick}
             name='name'
             value={name}
             onChange={onChange}
@@ -58,6 +59,7 @@ const ExerciseForm = ({ exercise, updateExercise }) => {
             <Form.Group>
               <Form.Label>Sets</Form.Label>
               <Form.Control
+                onBlur={onClick}
                 name='sets'
                 value={sets}
                 onChange={onChange}
@@ -71,6 +73,7 @@ const ExerciseForm = ({ exercise, updateExercise }) => {
             <Form.Group>
               <Form.Label>Repetitions</Form.Label>
               <Form.Control
+                onBlur={onClick}
                 name='repetitions'
                 value={repetitions}
                 onChange={onChange}
@@ -81,12 +84,6 @@ const ExerciseForm = ({ exercise, updateExercise }) => {
           </Col>
         </Row>
       </Form>
-
-      {dirty && (
-        <Button block onClick={onClick}>
-          Update Exercise
-        </Button>
-      )}
     </div>
   )
 }

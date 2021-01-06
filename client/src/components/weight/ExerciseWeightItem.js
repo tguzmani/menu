@@ -14,7 +14,7 @@ const ExerciseWeightItem = ({ weight, exerciseId, deleteWeightExercise }) => {
   return (
     <ListGroupItem action>
       <Row>
-        <Col>{name}</Col>
+        <Col xs={5}>{name}</Col>
         <Col>
           {number} x {value} lb
         </Col>

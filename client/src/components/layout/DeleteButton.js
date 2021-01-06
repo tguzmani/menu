@@ -1,14 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { BsFillXCircleFill, BsFillExclamationCircleFill } from 'react-icons/bs'
 import { Spinner } from 'react-bootstrap'
 
 import useConfirmation from '../../hooks/useConfirmation'
 
-const DeleteButton = ({ action, loading }) => {
+const DeleteButton = ({ action }) => {
   const [confirm, handleConfirm] = useConfirmation()
-
-  if (loading) return <Spinner />
 
   return (
     <div className={`text-right ${confirm ? 'confirm' : ''}`}>

@@ -17,7 +17,7 @@ export const setLoading = () => dispatch => {
 }
 
 export const createWeight = weight => async dispatch => {
-  setLoading()(dispatch)
+  // setLoading()(dispatch)
   try {
     const res = await axios.post(`/api/weight/`, weight, config)
     dispatch({ type: CREATE_WEIGHT, payload: res.data })

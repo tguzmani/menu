@@ -27,8 +27,8 @@ export const createRoutine = routine => async dispatch => {
   }
 }
 
-export const readRoutines = () => async dispatch => {
-  setLoading()(dispatch)
+export const readRoutines = (loading = true) => async dispatch => {
+  if (loading) setLoading()(dispatch)
   try {
     const res = await axios.get(`/api/routine/all`)
     dispatch({ type: READ_ROUTINES, payload: res.data })
@@ -70,7 +70,7 @@ export const createSession = routine => async dispatch => {
     dispatch({ type: ERROR_ROUTINE, payload: error.response.data.message })
   }
 
-  readRoutines()(dispatch)
+  readRoutines(false)(dispatch)
 }
 
 export const popSession = routine => async dispatch => {

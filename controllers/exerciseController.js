@@ -56,6 +56,7 @@ exports.updateExercise = async (req, res) => {
   Exercise.findByIdAndUpdate(req.params.exerciseId, req.body, {
     new: true,
   })
+    .populate('weights.weight')
     .then(exercise => {
       if (!exercise)
         return res.status(400).json({ message: 'Exercise not found' })

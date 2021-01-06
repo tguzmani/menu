@@ -39,7 +39,7 @@ export const readExercises = () => async dispatch => {
 }
 
 export const updateExercise = exercise => async dispatch => {
-  setLoading()(dispatch)
+  // setLoading()(dispatch)
   try {
     const res = await axios.put(
       `/api/exercise/${exercise._id}`,

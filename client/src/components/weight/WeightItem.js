@@ -11,7 +11,7 @@ const WeightItem = ({ weight, deleteWeight }) => {
   return (
     <ListGroupItem action>
       <Row>
-        <Col>{name}</Col>
+        <Col xs={5}>{name}</Col>
         <Col>{value} lb</Col>
         <Col>
           <DeleteButton action={() => deleteWeight(weight)} />

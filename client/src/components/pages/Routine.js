@@ -73,11 +73,15 @@ const Routine = ({
         )}
       </div>
 
-      <Exercises
-        exercises={thisRoutineExercises}
-        editing={editing}
-        offset={routine.history.length % 3}
-      />
+      {loadingExercise ? (
+        <Loading />
+      ) : (
+        <Exercises
+          exercises={thisRoutineExercises}
+          editing={editing}
+          offset={routine.history.length % 3}
+        />
+      )}
 
       {editing ? (
         <Button
@@ -99,7 +103,10 @@ const Routine = ({
           {success ? 'Success' : 'Mark as done'}
         </Button>
       ) : (
-        'Press Edit to add exercises to this routine'
+        !loadingRoutine &&
+        !loadingExercise && (
+          <div>'Press Edit to add exercises to this routine'</div>
+        )
       )}
     </div>
   )

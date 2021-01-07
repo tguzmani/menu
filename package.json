@@ -1,5 +1,5 @@
 {
-  "name": "Menu",
+  "name": "menu",
   "version": "1.0.0",
   "description": "Simulación de menú digital de algún restaurant",
   "main": "server.js",

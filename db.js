@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
-require('dotenv').config({ path: './config/config.env' })
+require('dotenv').config()
+
+const mongoURI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_USER}-gbmzw.mongodb.net/menu?retryWrites=true&w=majority`
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.DATABASE, {
+    await mongoose.connect(mongoURI, {
       useNewUrlParser: true,
       useCreateIndex: true,
       useFindAndModify: false,

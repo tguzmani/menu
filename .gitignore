@@ -2,3 +2,4 @@ node_modules/
 framework/
 config/config.env
 notes.txt
+.env

@@ -19,7 +19,7 @@ const useRoute = route => {
   app.use(`/api/${route}`, require(`./routes/${route}Routes`))
 }
 
-routes = ['auth', 'user', 'routine', 'exercise', 'weight']
+routes = ['group', 'dish']
 routes.forEach(route => useRoute(route))
 
 if (process.env.NODE_ENV === 'production') {

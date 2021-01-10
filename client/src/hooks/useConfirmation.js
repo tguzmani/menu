@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const useConfirmation = (timeout = 1000) => {
+const useConfirmation = (timeout = 2500) => {
   const [confirm, setConfirm] = useState(false)
 
   useEffect(() => {

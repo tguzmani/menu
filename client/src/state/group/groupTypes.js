@@ -1,0 +1,11 @@
+export const ERROR_GROUP = 'ERROR_GROUP'
+export const LOADING_GROUP = 'LOADING_GROUP'
+
+export const CREATE_GROUP = 'CREATE_GROUP'
+export const READ_GROUP = 'READ_GROUP'
+export const READ_GROUPS = 'READ_GROUPS'
+export const UPDATE_GROUP = 'UPDATE_GROUP'
+export const DELETE_GROUP = 'DELETE_GROUP'
+
+export const SET_CURRENT_GROUP = 'SET_CURRENT_GROUP'
+export const CLEAR_CURRENT_GROUP = 'CLEAR_CURRENT_GROUP'

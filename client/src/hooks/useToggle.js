@@ -8,7 +8,7 @@ const useToggle = () => {
     toggle,
   }
 
-  return [toggle, bind]
+  return [toggle, bind, setToggle]
 }
 
 export default useToggle
